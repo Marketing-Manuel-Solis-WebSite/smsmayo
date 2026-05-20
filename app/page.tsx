@@ -118,7 +118,7 @@ export default function Home() {
             <CallButton
               location="below_video"
               label="Llamar después del video"
-              subLabel="Hablamos hoy"
+              subLabel="Hablemos hoy"
               variant="primary"
               size="lg"
               pulse
@@ -169,45 +169,8 @@ export default function Home() {
           <div className="mt-7">
             <CallButton
               location="why_us"
-              label="Llamar y avanzar mi caso"
+              label="Llamar y avanzar con mi caso"
               variant="secondary"
-              size="lg"
-            />
-          </div>
-        </div>
-      </section>
-
-      <section className="px-5 pt-14">
-        <div className="mx-auto max-w-md">
-          <div className="text-center">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-gold-light">
-              Áreas de práctica
-            </p>
-            <h2 className="font-serif mt-2 text-[26px] leading-tight text-white">
-              ¿En qué podemos <span className="gold-text">representarle</span>?
-            </h2>
-          </div>
-
-          <div className="mt-6 grid grid-cols-2 gap-3">
-            {practiceAreas.map((a) => (
-              <div
-                key={a.title}
-                className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] p-4"
-              >
-                <p className="font-semibold text-white text-[14px]">{a.title}</p>
-                <p className="mt-1 text-[12px] text-white/65 leading-snug">
-                  {a.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-7">
-            <CallButton
-              location="practice_areas"
-              label="Llamar sobre mi caso"
-              subLabel="Atención directa"
-              variant="primary"
               size="lg"
             />
           </div>
