@@ -1,5 +1,5 @@
-export const PHONE_NUMBER_DISPLAY = "+1 (111) 111-1111";
-export const PHONE_NUMBER_TEL = "+11111111111";
+export const PHONE_NUMBER_DISPLAY = "+1 (713) 322-7646";
+export const PHONE_NUMBER_TEL = "+17133227646";
 
 export type CallEventPayload = {
   event: "call_click";
