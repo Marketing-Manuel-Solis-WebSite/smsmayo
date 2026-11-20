@@ -1,18 +1,18 @@
 "use client";
 
-import { PHONE_NUMBER_DISPLAY, PHONE_NUMBER_TEL, trackCallClick } from "../lib/tracking";
+import { SITE_DISPLAY, SITE_URL, trackSiteClick } from "../lib/tracking";
 
 type Variant = "primary" | "secondary" | "ghost";
 type Size = "sm" | "md" | "lg" | "xl";
 
-type CallButtonProps = {
+type SiteButtonProps = {
   location: string;
   label?: string;
   subLabel?: string;
   variant?: Variant;
   size?: Size;
   fullWidth?: boolean;
-  showNumber?: boolean;
+  showUrl?: boolean;
   pulse?: boolean;
   className?: string;
 };
@@ -33,28 +33,23 @@ const variantClasses: Record<Variant, string> = {
     "border border-gold/60 text-gold-light bg-white/[0.03] backdrop-blur-sm hover:bg-gold/10 active:bg-gold/15",
 };
 
-export default function CallButton({
+export default function SiteButton({
   location,
-  label = "Llamar ahora",
+  label = "Visitar nuestro sitio",
   subLabel,
   variant = "primary",
   size = "lg",
   fullWidth = true,
-  showNumber = false,
+  showUrl = false,
   pulse = false,
   className = "",
-}: CallButtonProps) {
-  const handleClick = () => {
-    trackCallClick(location);
-  };
-
+}: SiteButtonProps) {
   return (
     <a
-      href={`tel:${PHONE_NUMBER_TEL}`}
-      onClick={handleClick}
+      href={SITE_URL}
+      onClick={() => trackSiteClick(location)}
       data-tracking-location={location}
-      data-tracking-event="call_click"
-      aria-label={`Llamar al ${PHONE_NUMBER_DISPLAY}`}
+      aria-label={`${label}: ${SITE_DISPLAY}`}
       className={[
         "relative inline-flex items-center justify-center gap-3 rounded-full",
         "transition-transform duration-150 will-change-transform",
@@ -69,15 +64,13 @@ export default function CallButton({
       <span
         className={[
           "inline-flex h-9 w-9 items-center justify-center rounded-full",
-          variant === "primary"
-            ? "bg-[#0a1330] text-gold-light"
-            : variant === "secondary"
-            ? "bg-[#0a1330] text-gold-light"
-            : "bg-gold-light/15 text-gold-light border border-gold/40",
+          variant === "ghost"
+            ? "bg-gold-light/15 text-gold-light border border-gold/40"
+            : "bg-[#0a1330] text-gold-light",
         ].join(" ")}
         aria-hidden="true"
       >
-        <PhoneIcon />
+        <GlobeIcon />
       </span>
 
       <span className="flex flex-col items-start leading-tight">
@@ -87,9 +80,9 @@ export default function CallButton({
             {subLabel}
           </span>
         )}
-        {showNumber && (
+        {showUrl && (
           <span className="text-[13px] font-medium tracking-wide opacity-90">
-            {PHONE_NUMBER_DISPLAY}
+            {SITE_DISPLAY}
           </span>
         )}
       </span>
@@ -97,7 +90,7 @@ export default function CallButton({
   );
 }
 
-function PhoneIcon() {
+function GlobeIcon() {
   return (
     <svg
       width="18"
@@ -109,7 +102,9 @@ function PhoneIcon() {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.94.37 1.86.72 2.73a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.35-1.35a2 2 0 0 1 2.11-.45c.87.35 1.79.59 2.73.72A2 2 0 0 1 22 16.92Z" />
+      <circle cx="12" cy="12" r="10" />
+      <path d="M2 12h20" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z" />
     </svg>
   );
 }

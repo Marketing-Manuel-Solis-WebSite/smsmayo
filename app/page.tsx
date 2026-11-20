@@ -1,8 +1,7 @@
 import Image from "next/image";
-import CallButton from "./components/CallButton";
+import SiteButton from "./components/SiteButton";
 import VideoEmbed from "./components/VideoEmbed";
-import StickyCallBar from "./components/StickyCallBar";
-import { PHONE_NUMBER_DISPLAY } from "./lib/tracking";
+import StickySiteBar from "./components/StickySiteBar";
 
 const practiceAreas = [
   { title: "Inmigración", desc: "Defensa, visas y residencia." },
@@ -16,8 +15,8 @@ const practiceAreas = [
 const steps = [
   {
     n: "01",
-    title: "Llame",
-    desc: "Marque y hable con nuestro equipo en español.",
+    title: "Entre al sitio",
+    desc: "Visite www.manuelsolis.com y contáctenos en español.",
   },
   {
     n: "02",
@@ -70,19 +69,19 @@ export default function Home() {
 
           <p className="mt-4 text-[15px] leading-relaxed text-white/80">
             Nuestro equipo legal está listo para escucharle y trabajar
-            para arreglar su caso. Llame ahora y reciba atención directa.
+            para arreglar su caso. Entre a nuestro sitio y reciba atención directa.
           </p>
 
           <div className="mt-7 space-y-3">
-            <CallButton
+            <SiteButton
               location="hero_primary"
-              label="Llamar ahora"
-              subLabel={PHONE_NUMBER_DISPLAY}
+              label="Visitar nuestro sitio"
               variant="primary"
               size="xl"
               pulse
+              showUrl
             />
-            <CallButton
+            <SiteButton
               location="hero_secondary"
               label="Hablar con un representante"
               variant="ghost"
@@ -115,9 +114,9 @@ export default function Home() {
           </div>
           <VideoEmbed />
           <div className="mt-5">
-            <CallButton
+            <SiteButton
               location="below_video"
-              label="Llamar después del video"
+              label="Ir al sitio después del video"
               subLabel="Hablemos hoy"
               variant="primary"
               size="lg"
@@ -149,8 +148,8 @@ export default function Home() {
                 d: "Años representando casos en distintas áreas.",
               },
               {
-                t: "Disponibilidad telefónica",
-                d: "Una llamada y comenzamos a escucharle.",
+                t: "Atención en línea",
+                d: "Entre al sitio y comenzamos a escucharle.",
               },
             ].map((item) => (
               <li
@@ -167,9 +166,9 @@ export default function Home() {
           </ul>
 
           <div className="mt-7">
-            <CallButton
+            <SiteButton
               location="why_us"
-              label="Llamar y avanzar con mi caso"
+              label="Avanzar con mi caso"
               variant="secondary"
               size="lg"
             />
@@ -206,9 +205,9 @@ export default function Home() {
           </ol>
 
           <div className="mt-7">
-            <CallButton
+            <SiteButton
               location="steps"
-              label="Empezar con una llamada"
+              label="Empezar en nuestro sitio"
               variant="primary"
               size="lg"
               pulse
@@ -226,19 +225,19 @@ export default function Home() {
             Hable con nosotros y <span className="gold-text">arregle su caso</span>
           </h2>
           <p className="mt-3 text-sm text-white/70">
-            Marque y reciba atención inmediata de nuestro equipo legal.
+            Entre a nuestro sitio y reciba atención de nuestro equipo legal.
           </p>
 
           <div className="mt-6 space-y-3">
-            <CallButton
+            <SiteButton
               location="final_primary"
-              label="Llamar ahora"
-              subLabel={PHONE_NUMBER_DISPLAY}
+              label="Visitar nuestro sitio"
               variant="primary"
               size="xl"
               pulse
+              showUrl
             />
-            <CallButton
+            <SiteButton
               location="final_secondary"
               label="Hablar con un representante"
               variant="secondary"
@@ -272,7 +271,7 @@ export default function Home() {
         </div>
       </footer>
 
-      <StickyCallBar />
+      <StickySiteBar />
     </main>
   );
 }

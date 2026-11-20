@@ -1,56 +1,16 @@
-export const PHONE_NUMBER_DISPLAY = "+1 (713) 322-7646";
-export const PHONE_NUMBER_TEL = "+17133227646";
+import { track } from "@vercel/analytics";
 
-export type CallEventPayload = {
-  event: "call_click";
-  location: string;
-  phone: string;
-  timestamp: string;
-  page: string;
-};
+// A dónde llevan todos los botones (antes eran llamadas a +1 713 322-7646).
+// Los utm_* dejan ver en las analíticas del sitio cuánta gente llegó desde este SMS.
+export const SITE_URL =
+  "https://www.manuelsolis.com/es?utm_source=sms&utm_medium=sms&utm_campaign=sms-mayo";
+export const SITE_DISPLAY = "www.manuelsolis.com";
 
-declare global {
-  interface Window {
-    dataLayer?: Record<string, unknown>[];
-    gtag?: (...args: unknown[]) => void;
-    fbq?: (...args: unknown[]) => void;
-  }
+// Cuenta cada toque a un botón en Vercel Web Analytics (evento «click_sitio»).
+export function trackSiteClick(location: string): void {
+  track("click_sitio", { ubicacion: location });
 }
 
-export function trackCallClick(location: string): void {
-  if (typeof window === "undefined") return;
-
-  const payload: CallEventPayload = {
-    event: "call_click",
-    location,
-    phone: PHONE_NUMBER_TEL,
-    timestamp: new Date().toISOString(),
-    page: window.location.pathname,
-  };
-
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push(payload);
-
-  if (typeof window.gtag === "function") {
-    window.gtag("event", "call_click", {
-      event_category: "engagement",
-      event_label: location,
-      phone_number: PHONE_NUMBER_TEL,
-    });
-  }
-
-  if (typeof window.fbq === "function") {
-    window.fbq("track", "Contact", {
-      content_name: "call_click",
-      content_category: location,
-    });
-  }
-
-  window.dispatchEvent(
-    new CustomEvent("call_click", { detail: payload }),
-  );
-
-  if (process.env.NODE_ENV !== "production") {
-    console.info("[tracking] call_click", payload);
-  }
+export function trackVideo(evento: "video_sonido" | "video_terminado"): void {
+  track(evento);
 }

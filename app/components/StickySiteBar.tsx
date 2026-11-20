@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import CallButton from "./CallButton";
+import SiteButton from "./SiteButton";
 
-export default function StickyCallBar() {
+export default function StickySiteBar() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -26,14 +26,13 @@ export default function StickyCallBar() {
       ].join(" ")}
     >
       <div className="pointer-events-auto mx-auto max-w-md">
-        <CallButton
+        <SiteButton
           location="sticky_footer"
-          label="Llame ahora"
-          subLabel="Atención disponible"
+          label="Visite nuestro sitio"
           variant="primary"
           size="lg"
           pulse
-          showNumber
+          showUrl
         />
       </div>
     </div>
